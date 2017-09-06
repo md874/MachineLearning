@@ -10,10 +10,6 @@
 %  You will need to complete the following functions in this 
 %  exericse:
 %
-%     warmUpExercise.m
-%     plotData.m
-%     gradientDescent.m
-%     computeCost.m
 %     gradientDescentMulti.m
 %     computeCostMulti.m
 %     featureNormalize.m
@@ -51,6 +47,10 @@ fprintf('Normalizing Features ...\n');
 
 [X mu sigma] = featureNormalize(X);
 
+% Print out some data points
+fprintf('Normalized First 10 examples from the dataset: \n');
+fprintf(' x = [%.2f %.2f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');
+
 % Add intercept term to X
 X = [ones(m, 1) X];
 
@@ -82,7 +82,7 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
+alpha = 0.1;
 num_iters = 400;
 
 % Init Theta and Run Gradient Descent 
@@ -104,7 +104,9 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
+test = [1650 3];
+test_norm = normalize(test,mu,sigma); 
+price = [1, test_norm] * theta; % You should change this
 
 
 % ============================================================
@@ -149,7 +151,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
+price = [1, test] * theta; % You should change this
 
 
 % ============================================================
